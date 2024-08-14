@@ -1,0 +1,39 @@
+name: build-test
+on: # rebuild any PRs and main branch changes
+    pull_request:
+    push:
+        branches:
+            - main
+            - "releases/*"
+
+jobs:
+    build: # make sure build/ci work properly
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - run: |
+                  npm install
+            - run: |
+                  npm run package # Assuming you have a build script to compile TypeScript
+            - run: |
+                  npm run all
+
+    test: # run tests
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - run: |
+                  npm install
+            - run: |
+                  npm run package # Make sure to build before running tests
+            - run: |
+                  npm run all # Run your tests
+              # env:
+              #     POSTGRES_CONNECTION_STRING: ${{ secrets.POSTGRES_CONNECTION_STRING }}
+              #     OPENAI_KEY: ${{ secrets.OPENAI_API_KEY }}
+              #     DOCS_ROOT_PATH: "docs"
+            - uses: ./
+              with:
+                  POSTGRES_CONNECTION_STRING: ${{ secrets.POSTGRES_CONNECTION_STRING }}
+                  OPENAI_KEY: ${{ secrets.OPENAI_API_KEY }}
+                  DOCS_ROOT_PATH: ${{ github.workspace }}/docs
