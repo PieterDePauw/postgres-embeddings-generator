@@ -35,5 +35,5 @@ jobs:
             - uses: ./
               with:
                   POSTGRES_CONNECTION_STRING: ${{ secrets.POSTGRES_CONNECTION_STRING }}
-                  OPENAI_KEY: ${{ secrets.OPENAI_API_KEY }}
+                  OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
                   DOCS_ROOT_PATH: ${{ github.workspace }}/docs
