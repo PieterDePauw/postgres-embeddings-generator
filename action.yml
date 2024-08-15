@@ -1,19 +1,19 @@
-name: 'postgres-embeddings-generator'
-description: 'Generate embeddings from your Knowledge Base to use with a PostgreSQL database.'
-author: 'Supabase'
+name: "postgres-embeddings-generator"
+description: "Generate embeddings from your Knowledge Base to use with a PostgreSQL database."
+author: "Supabase"
 
 inputs:
-  POSTGRES_CONNECTION_STRING:
-    required: true
-    description: 'Your PostgreSQL connection string'
-  OPENAI_API_KEY:
-    required: true
-    description: 'Your OpenAI API key'
-  DOCS_ROOT_PATH:
-    required: true
-    description: 'The path to the root of your knowledge base or docs folder'
-    default: 'docs'
+    POSTGRES_CONNECTION_STRING:
+        required: true
+        description: "Your PostgreSQL connection string"
+    OPENAI_API_KEY:
+        required: true
+        description: "Your OpenAI API key"
+    DOCS_ROOT_PATH:
+        required: true
+        description: "The path to the root of your knowledge base or docs folder"
+        default: "docs"
 
 runs:
-  using: 'node20'
-  main: 'dist/index.js'
+    using: "node20"
+    main: "dist/index.js"
